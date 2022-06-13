@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: aquamarine;
+            text-align: center;
+        }
+        h1{
+            margin-top: 100px;
+            margin-bottom: 80px;
+            font-size: 50px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #num{
+            color: brown;
+            font-size: 60px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #button{
+           
+            margin: 2%;
+        }
+        .bt{
+            background-color: rgb(117, 226, 14);
+            font-size: large;
+            height: 50px;
+            width: 140px;
+        }
+        #footer{
+            position: fixed;
+            bottom: 0%;
+            width: 100%;
+            background-color: rgb(181, 180, 180);
+        }
+        #items{
+            padding: 5%;
+            margin: 9%;
+            background-color: rgb(182, 255, 231);
+        }
+    </style>
+</head>
+<body>
+   <H1> STOPWATCH </H1>
+   <div id="items">
+   <div id="num">
+   <span id="sec"> 00</span>
+   <span>:</span>
+   <span id="ms">00</span><br>
+   </div>
+<div id="button">
+   <input type="button" value="Start" id="start" class="bt">
+   <input type="button" value="Stop" id="stop" class="bt">
+   <input type="button" value="Reset" id="reset" class="bt">
+</div>
+</div>
+<div id="footer"> @immridulsharma</div>
+
+<script>
+    var temp = 0;
+    var tens = 0;
+    var s=0;
+    var ss=0;
+    var stop = document.getElementById("stop");
+    var start = document.getElementById("start");
+    var reset = document.getElementById("reset");
+    var sec = document.getElementById("sec");
+    var ms = document.getElementById("ms");
+    var st;
+    start.addEventListener("click", function(){
+       if(start.onclick==true) return;
+       st = setInterval(function(){
+          temp++;
+          
+          if(temp>9){
+            tens++;
+            temp=0;
+            if(tens>9 ){
+              s++;
+              tens=0;
+              temp=0;
+              
+          }
+          }
+          sec.innerHTML= ss + "" + s;
+          ms.innerHTML = tens  + "" + temp;
+          start.disabled=true;
+       } , 10); 
+       
+    });
+    
+    stop.addEventListener("click", function(){
+       clearInterval(st);
+       start.disabled=false;
+    });
+   
+    reset.addEventListener("click", function(){
+       clearInterval(st);
+       tens=0;
+              temp=0;
+              s=0;
+              ss=0;
+       sec.innerHTML= "00";
+          ms.innerHTML = "00";
+          start.disabled=false;
+    });
+</script>
+</body>
+</html>
